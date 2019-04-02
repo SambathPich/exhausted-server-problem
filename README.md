@@ -24,4 +24,4 @@ establishment, the server only waits on one customer at a time. This is because 
 also the cook. So, if the server/cook is busy then only one customer is actively being
 serviced and the others (in chairs or possibly outside) are waiting.
 
-This is a semaphore-based solution program using Java.
+=> This is a semaphore-based solution program using Java. However, this program hasn't been thoroughly tested. It is just an example and hopefully someone can learn or at least has a some idea where to start. Keep learning and practicing!!!
