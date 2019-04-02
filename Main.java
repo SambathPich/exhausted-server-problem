@@ -1,17 +1,13 @@
-package com.sambath;
-
 import java.util.concurrent.Semaphore;
 import java.util.Scanner;
 
 public class Main {
-
     //Declare and initiate semaphores and make it FCFS
     static Semaphore semaphoreDoor = new Semaphore(15, true);
     static Semaphore semaphoreNap = new Semaphore(0, true);
     static boolean firstCustomer;   //Used to identify first customer
 
     public static void main(String[] args) throws InterruptedException {
-
         // Prompt user to hit Enter
         Scanner user_input = new Scanner(System.in);
         Boolean hitEnter = false;
@@ -53,7 +49,6 @@ public class Main {
             }
         }
 
-
         //Start threads in Slow_Hour Group
         for (int x = 50; x < 100; x++) {
             threadList[x] = new CustomerThread(slowHourTG,Integer.toString(x + 1));
@@ -61,16 +56,12 @@ public class Main {
             Thread.sleep((long)(Math.random() * 2000));     //Sleep between 0 and 20000 milliseconds
         }
 
-
         //Terminate Program Manually
         Thread.sleep(3000);
         System.exit(0);
-
     }
 
-
     static class CustomerThread extends Thread {
-
         String customerName = "";
         CustomerThread(ThreadGroup tg,  String name) {
             super(String.valueOf(tg));
@@ -93,15 +84,12 @@ public class Main {
                             + semaphoreDoor.availablePermits()
                             + " => They have to wait outside");
                 }
-
-
                 semaphoreDoor.acquire();
-
+                
                 try {
                     for (int i = 1; i <= 3; i++) {
                         if (i == 1) {
                             System.out.println("Customer " + customerName + " has entered restaurant and is seated");
-
                             //Server is sleeping because there is no customer
                             //Awake the server if the first customer arrives.
                             if(firstCustomer == true) {
@@ -113,33 +101,25 @@ public class Main {
                         } else {
                             System.out.println("Customer " + customerName + " has been served");
                         }
-
                         Thread.sleep((long)(Math.random() * 1000));     //Sleep between 0 and 1000 milliseconds
                     }
-
                 //After Customer has finished eating successfully
                 } finally {
-
                     System.out.println("Customer " + customerName + " is leaving");
                     semaphoreDoor.release();
-
                     //If there is no customer => Server takes a quick NAP
                     if(semaphoreDoor.availablePermits() == 15) {
                         System.out.println(".....[Server is SLEEPING].....");
                     }
                 }
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-
     static class ServerThread extends Thread {
-
         public void run() {
-
             while (true) {
                 //If there is no customer => returns FALSE
                 // Thus, Server is able to take a quick NAP
@@ -150,7 +130,6 @@ public class Main {
                         e.printStackTrace();
                     }
                 }
-
                 try {
                     Thread.sleep((long)(Math.random() * 1000));     //Sleep between 0 and 1000 milliseconds
                 } catch (InterruptedException e) {
