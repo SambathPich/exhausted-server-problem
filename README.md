@@ -1,6 +1,6 @@
 # Exhausted-Server-Problem
 
-There is a testaurant that is under-staffed. They can only afford to have one server and he is forced to work double-shifts and has only a single counter with 15 seats.
+There is a restaurant that is under-staffed. They can only afford to have one server and he is forced to work double-shifts and has only a single counter with 15 seats.
 
 There are times when there is a line out the door waiting to get one of the limited available seats. At other times of the day, there are no customers and the server takes the opportunity to try to get a little bit of sleep.
 
